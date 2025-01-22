@@ -3,9 +3,7 @@
 
  // Récupération du chemin désiré
  $uri = $_SERVER["REQUEST_URI"];
- var_dump($uri);
  if ($uri === "/connexion") {
-    var_dump("coucou");
     $title = "Connexion";
     $template = "Views/Users/connexion.php";
     require_once("Views/base.php");
