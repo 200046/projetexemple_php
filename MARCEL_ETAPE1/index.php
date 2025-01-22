@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="Css/animation.css">
     <link rel="stylesheet" href="Css/flex.css">
     <link rel="stylesheet" href="Css/form.css">
-    <title>BB</title>
+    <title><?php $titel ?></title>
 </head>
 <body>
     <header>
