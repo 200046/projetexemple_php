@@ -1,3 +1,4 @@
+<!-- Code ayant la navBar (menu supérieur ) --> 
 <ul class="flexible space-evenly">
             <!-- grand écran -->
             <li class="menu"><a href="index.php">Home</a></li>

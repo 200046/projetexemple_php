@@ -1,9 +1,11 @@
+<!-- Code ayant toutes les écoles répertoriées -->
 <h1>Liste des écoles répertoriées</h1>
         
         <div class="flexible wrap space-around">
             <div class="border card">
                 <h2 class="center">ITN</h2>
                 <div>
+                    <!-- l'ITN -->
                     <div class="flexible blocImageEcole"><img src="../Assests/Images/itnIm.jpeg" alt="itn" /></div>
                     <div class="center">
                         <p><span>Rue de la pépinière 101</span> - <span>Namur</span></p>
@@ -12,6 +14,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Collège de saint servais -->
             <div class="border card">
                 <h2 class="center">Collège Saint Servais</h2>
                 <div>
@@ -23,6 +26,7 @@
                     </div>
                 </div>
             </div>
+            <!-- Institut Saint Albert -->
             <div class="border card">
                 <h2 class="center">Institut Saint Albert</h2>
                 <div>
@@ -34,6 +38,7 @@
                     </div>
                 </div>
             </div>
+            <!-- École de l'enfant Jésus -->
             <div class="border card">
                 <h2 class="center">Ecole de l'enfant Jésus</h2>
                 <div>
