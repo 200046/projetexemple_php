@@ -15,7 +15,7 @@
     <?php require_once("Views/Components/navBar.php")   ?>
     </header>
     <main>
-        
+        <?php require_once("$template"); ?>
     </main>
     <footer>
      <?php require_once("Views/Components/footer.php")   ?>
