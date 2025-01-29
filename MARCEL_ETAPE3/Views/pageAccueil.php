@@ -12,6 +12,7 @@
                         <span><?= $school->schoolAdresse ?></span> -
                         <span><?= $school->schoolCodePostal . " " . $school->schoolVile ?></span>
                     </p>
+                    <h3><?= $school->schoolNumero ?></h3>
                 </div>
                 <a href="voirEcole.php" class="btn btn-page">Voir l'école</a>
             </div>
