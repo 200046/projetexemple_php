@@ -1,5 +1,6 @@
 <?php // Code php qui décide de ce qu'il faut donner comme valeur à la variable $template
 // On ajoutera par la suite les require auc modèles 
+require_once("Models/userModel.php");
 
 // Récupération du chemin désiré
 $uri = $_SERVER["REQUEST_URI"];
@@ -11,14 +12,16 @@ if ($uri === "/connexion") {
       // Tentative de connexion et de récuperation des données de l'utilisateur
       if (connectUser($pdo)) {
          // Rédirection vers la page d'accueil
-         header("location:/");
+         header("location:/profile");
       }
    }
    $title = "Connexion";
    $template = "Views/Users/connexion.php";
    require_once("Views/base.php");
 } elseif ($uri === "/deconnexion") {
-   // À voir plus tard
+   // Nettoayeg de la session et retour à l'index
+   session_destroy();
+   header("location:/");
 } elseif ($uri === "/inscription") {
    if (isset($_POST['btnEnvoi'])) {
       // Vérif des données encodées
@@ -32,6 +35,10 @@ if ($uri === "/connexion") {
       }
    }
    $title = "Inscription";
+   $template = "Views/Users/InscriptionOrEditProfile.php";
+   require_once("Views/base.php");
+} elseif($uri ==="/updateProfil") {
+   $title = "Modifier mon profil";
    $template = "Views/Users/InscriptionOrEditProfile.php";
    require_once("Views/base.php");
 }

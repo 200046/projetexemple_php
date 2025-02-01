@@ -10,7 +10,7 @@
                 <div class="center">
                     <p>
                         <span><?= $school->schoolAdresse ?></span> -
-                        <span><?= $school->schoolCodePostal . " " . $school->schoolVile ?></span>
+                        <span><?= $school->schoolCodePostal . " " . $school->schoolVille ?></span>
                     </p>
                     <h3><?= $school->schoolNumero ?></h3>
                 </div>
