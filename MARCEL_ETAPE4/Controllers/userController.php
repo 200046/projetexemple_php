@@ -12,7 +12,7 @@ if ($uri === "/connexion") {
       // Tentative de connexion et de récuperation des données de l'utilisateur
       if (connectUser($pdo)) {
          // Rédirection vers la page d'accueil
-         header("location:/profile");
+         header("location:/updateProfil");
       }
    }
    $title = "Connexion";
@@ -38,11 +38,19 @@ if ($uri === "/connexion") {
    $template = "Views/Users/InscriptionOrEditProfile.php";
    require_once("Views/base.php");
 } elseif($uri ==="/updateProfil") {
+   if(isset($_POST['btnEnvoi'])) {
+      // Vérif des données encodées
+      $messageError = verifEmptyData();
+      // S'il n'y a pas d'erreur
+      if (!$messageError) {
+         // Modification de l'utilisateur dans la base de données
+         updateUser($pdo);
+         // Rédirection vers la page de mon profil
+         updateSession($pdo);
+         header("location:/updateProfil");
+      }
+   }
    $title = "Modifier mon profil";
    $template = "Views/Users/InscriptionOrEditProfile.php";
-   require_once("Views/base.php");
-} elseif($uri ==="/profile") {
-   $title = "Profile";
-   $template = "Views/Users/profile.php";
    require_once("Views/base.php");
 }
