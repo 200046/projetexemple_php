@@ -89,3 +89,100 @@ function selectAllOptions($pdo)
         die($message);
     }
 }
+
+
+/**
+ * Fonction selectOneSchool
+ * ------------------------
+ * BUT : aller rechercher les caractéristiques de l'école active dans la base de données
+ * IN : $pdo reprenant toutes les informations de connexion
+ * OUT : objet pdo contenant toutes les informations concernant l'école active
+ */
+function selectOneSchool($pdo)
+{
+    try {
+        $query = 'select * from school where schoolId = :schoolId';
+        $selectSchool = $pdo->prepare($query);
+        $selectSchool->execute([
+            'schoolId' => $_GET["schoolId"] // récupération du paramètre se trouvant dans l'adresse
+        ]);
+        $school = $selectSchool->fetch(); // récupération d'un enregistrement (pas fetchAll)
+        return $school;
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+
+
+/**
+ * Fonction selectOptionsActiveSchool
+ * ---------------------------------
+ * BUT : aller rechercher dans la base de données les caractéristiques des options de l'école affichée
+ * IN : $pdo reprenant toutes les informations de connexion
+ * OUT : objet pdo contenant la liste des options de l'école affichée
+ */
+function selectOptionsActiveSchool($pdo)
+{
+    try {
+        $query = 'select * from optionscolaire where optionScolaireId in (select optionScolaireId from option_ecole where schoolId = :schoolId)';
+        $selectOptions = $pdo->prepare($query);
+        $selectOptions->execute([
+            'schoolId' => $_GET["schoolId"]
+        ]);
+        $options = $selectOptions->fetchAll();
+        return $options;
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+
+
+/**
+ * Fonction updateSchool
+ * ----------------------
+ * BUT : mettre à jour les données de l'école active dans la table school
+ * IN : $dbh reprenant toutes les informations de connexion
+ */
+function updateSchool($dbh)
+{
+    try {
+        $query = 'update school set schoolNom = :schoolNom, schoolAdresse = :schoolAdresse, schoolVille = :schoolVille, schoolCodePostal = :schoolCodePostal, schoolNumero = :schoolNumero, schoolImage = :schoolImage where schoolId = :schoolId';
+        $updateSchoolFromId = $dbh->prepare($query);
+        $updateSchoolFromId->execute([
+            'schoolNom' => $_POST["nom"],
+            'schoolAdresse' => $_POST["adresse"],
+            'schoolVille' => $_POST["ville"],
+            'schoolCodePostal' => $_POST["code_postal"],
+            'schoolNumero' => $_POST["numero_telephone"],
+            'schoolImage' => $_POST["image"],
+            'schoolId' => $_GET["schoolId"] //école active
+        ]);
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+
+
+/**
+ * Fonction deleteOptionSchool
+ * ---------------------------
+ * BUT : supprimer les options de l'école active dans la table options
+ * IN : $pdo reprenant toutes les informations de connexion
+ */
+function deleteOptionSchool($dbh, $schoolId)
+{
+    try {
+        $query = 'delete from option_ecole where schoolId = :schoolId';
+        $deleteAllSchoolsFromId = $dbh->prepare($query);
+        $deleteAllSchoolsFromId->execute([
+            'schoolId' => $schoolId //école active
+        ]);
+    } catch (PDOException $e) {
+        $message = $e->getMessage();
+        die($message);
+    }
+}
+

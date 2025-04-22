@@ -20,11 +20,17 @@
         <input type="tel" id="telephone" name="telephone" placeholder="Numéro de téléphone">
     </div>
     <div class="form-group">
-        <select name="options[]" id="options-select" multiple>
-            <?php foreach ($options as $option) : ?>
-                <option value="<?= $option->optionScolaireId ?>"><?= $option->nom ?></option>
-            <?php endforeach; ?>
-        </select>
+    <select name="options[]" id="options-select" multiple>
+    <?php foreach ($options as $option) : ?>
+        <option value="<?= $option->optionScolaireId ?>"
+            <?php if (isset($optionsActiveSchool)) : ?>
+                <?php foreach ($optionsActiveSchool as $optionSchool) : ?>
+                    <?php if ($option->optionScolaireId === $optionSchool->optionScolaireId) : ?>selected<?php endif; ?>
+                <?php endforeach; ?>
+            <?php endif; ?>
+        ><?= $option->nom ?></option>
+    <?php endforeach; ?>
+</select>
     </div>
     <div class="form-group">
         <label for="image">Image</label>
